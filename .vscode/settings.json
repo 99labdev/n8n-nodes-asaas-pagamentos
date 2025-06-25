@@ -1,0 +1,7 @@
+{
+	"github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "Gere a mensagem do commit em portugues e Siga estritamente o formato de Conventional Commits para mensagens de commit. Use a estrutura abaixo:\n\n```\n<type>[optional scope]: <gitmoji> <description>\n\n[optional body]\n```\n\nGuidelines:\n\n1. **Type and Scope**: Escolha um tipo apropriado (por exemplo, `feat`, `fix`) e escopo opcional para descrever o módulo ou recurso afetado.\n\n2. **Gitmoji**: Inclua um `gitmoji` relevante que melhor represente a natureza da mudança.\n\n3. **Descrição**: Escreva uma descrição concisa e informativa no cabeçalho; use acentos graves se estiver referenciando código ou termos específicos.\n\n4. **Body**:: Para obter detalhes adicionais, use uma seção de corpo bem estruturada:\n - Use marcadores (`*`) para maior clareza.\n - Descreva claramente a motivação, o contexto ou os detalhes técnicos por trás da mudança, se aplicável.\n\nAs mensagens de confirmação devem ser claras, informativas e profissionais, auxiliando na legibilidade e no rastreamento do projeto."
+    },
+  ],
+}
