@@ -1,5 +1,7 @@
 # n8n-nodes-asaas
 
+![Asaas Logo](logo.png)
+
 Este é um nó da comunidade n8n. Ele permite que você use o Asaas em seus fluxos de trabalho n8n.
 
 O Asaas é uma plataforma de pagamentos brasileira que oferece soluções completas para cobrança, recebimento e pagamento, incluindo PIX, boleto bancário, cartão de crédito e débito, TED, além de funcionalidades como gestão de assinaturas, split de pagamentos, antecipação de recebíveis e muito mais.
@@ -29,11 +31,11 @@ npm install n8n-nodes-asaas
 #### ✅ Clientes
 
 - [x] **Listar clientes** - Recuperar lista de clientes com filtros opcionais
-- [ ] Criar novo cliente
-- [ ] Recuperar cliente específico
-- [ ] Atualizar cliente existente
-- [ ] Deletar cliente
-- [ ] Restaurar cliente removido
+- [x] **Criar novo cliente** - Criar um novo cliente com dados pessoais, de contato e endereço
+- [ ] **Recuperar cliente específico** - Obter detalhes completos de um cliente pelo ID
+- [ ] **Atualizar cliente existente** - Modificar dados de um cliente já cadastrado
+- [ ] **Deletar cliente** - Remover cliente do sistema permanentemente
+- [ ] **Restaurar cliente removido** - Reativar cliente que foi deletado anteriormente
 
 #### ⏳ Cobranças (Payments)
 
