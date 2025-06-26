@@ -1,48 +1,344 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n-nodes-asaas
 
-# n8n-nodes-starter
+Este é um nó da comunidade n8n. Ele permite que você use o Asaas em seus fluxos de trabalho n8n.
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](https://n8n.io). It includes the node linter and other dependencies.
+O Asaas é uma plataforma de pagamentos brasileira que oferece soluções completas para cobrança, recebimento e pagamento, incluindo PIX, boleto bancário, cartão de crédito e débito, TED, além de funcionalidades como gestão de assinaturas, split de pagamentos, antecipação de recebíveis e muito mais.
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+[n8n](https://n8n.io/) é uma plataforma de automação de fluxo de trabalho [licenciada fair-code](https://docs.n8n.io/reference/license/).
 
-If you would like your node to be available on n8n cloud you can also [submit your node for verification](https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/).
+[Instalação](#instalação)  
+[Operações](#operações)  
+[Credenciais](#credenciais)  
+[Compatibilidade](#compatibilidade)  
+[Uso](#uso)  
+[Recursos](#recursos)  
+[Histórico de versões](#histórico-de-versões)  
 
-## Prerequisites
+## Instalação
 
-You need the following installed on your development machine:
+Siga o [guia de instalação](https://docs.n8n.io/integrations/community-nodes/installation/) na documentação de nós da comunidade n8n.
 
-* [git](https://git-scm.com/downloads)
-* Node.js and npm. Minimum version Node 20. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-  ```
-  npm install n8n -g
-  ```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+```bash
+npm install n8n-nodes-asaas
+```
 
-## Using this starter
+## Operações
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+### Recursos Implementados da API Asaas
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-   ```
-   git clone https://github.com/<your organization>/<your-repo-name>.git
-   ```
-3. Run `npm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+#### ✅ Clientes
 
-## More information
+- [x] **Listar clientes** - Recuperar lista de clientes com filtros opcionais
+- [ ] Criar novo cliente
+- [ ] Recuperar cliente específico
+- [ ] Atualizar cliente existente
+- [ ] Deletar cliente
+- [ ] Restaurar cliente removido
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+#### ⏳ Cobranças (Payments)
 
-## License
+- [ ] **Criar nova cobrança** - Criar cobrança com diversas formas de pagamento
+- [ ] **Listar cobranças** - Recuperar lista de cobranças com filtros avançados
+- [ ] **Criar cobrança com cartão de crédito** - Cobrança direta com cartão
+- [ ] **Capturar cobrança com Pré-Autorização** - Finalizar pagamento pré-autorizado
+- [ ] **Pagar cobrança com cartão de crédito** - Processar pagamento de cobrança existente
+- [ ] **Recuperar informações de pagamento** - Obter dados de billing de uma cobrança
+- [ ] **Informações sobre visualização** - Dados de quando a cobrança foi visualizada
+- [ ] **Recuperar cobrança específica** - Obter detalhes de uma cobrança
+- [ ] **Atualizar cobrança existente** - Modificar dados de cobrança pendente
+- [ ] **Excluir cobrança** - Remover cobrança do sistema
+- [ ] **Restaurar cobrança removida** - Reativar cobrança excluída
+- [ ] **Recuperar status de cobrança** - Verificar status atual da cobrança
+- [ ] **Estornar cobrança** - Realizar estorno total ou parcial
+- [ ] **Obter linha digitável do boleto** - Código de barras para pagamento
+- [ ] **Obter QR Code PIX** - Gerar QR Code para pagamento via PIX
+- [ ] **Confirmar recebimento em dinheiro** - Marcar como pago em dinheiro
+- [ ] **Desfazer confirmação em dinheiro** - Cancelar confirmação de pagamento em dinheiro
+- [ ] **Simulador de vendas** - Simular cenários de pagamento
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+#### ⏳ Ações em Sandbox
+
+- [ ] **Confirmar pagamento** - Simular confirmação de pagamento no ambiente de teste
+- [ ] **Adicionar saldo** - Adicionar crédito para testes na conta sandbox
+
+#### ⏳ Cobranças com Dados Resumidos
+
+- [ ] **Criar cobrança com dados resumidos** - Retorna resposta simplificada para performance
+
+#### ⏳ Cartão de Crédito
+
+- [ ] **Tokenização de cartão de crédito** - Gerar token seguro para cartão
+- [ ] **Criar cobrança com cartão tokenizado** - Usar token para criar cobrança
+- [ ] **Validar dados do cartão** - Verificar se cartão é válido
+- [ ] **Listar cartões tokenizados** - Recuperar cartões salvos do cliente
+
+#### ⏳ Estornos
+
+- [ ] **Listar estornos de uma cobrança** - Histórico de estornos
+- [ ] **Criar estorno total** - Estornar valor completo da cobrança
+- [ ] **Criar estorno parcial** - Estornar parte do valor da cobrança
+- [ ] **Recuperar detalhes do estorno** - Informações específicas do estorno
+
+#### ⏳ Splits de Pagamento
+
+- [ ] **Recuperar split pago** - Informações de divisão de pagamento realizada
+- [ ] **Configurar splits** - Definir divisão de valores entre contas
+- [ ] **Listar splits** - Histórico de divisões de pagamento
+- [ ] **Cancelar split** - Desfazer divisão configurada
+
+#### ⏳ Conta Escrow
+
+- [ ] **Encerrar garantia da cobrança** - Finalizar processo de garantia
+- [ ] **Configurar conta escrow** - Ativar sistema de garantia
+- [ ] **Consultar status escrow** - Verificar situação da garantia
+
+#### ⏳ Documentos de Cobranças
+
+- [ ] **Upload de documentos da cobrança** - Anexar arquivos à cobrança
+- [ ] **Listar documentos** - Recuperar arquivos anexados
+- [ ] **Deletar documento** - Remover arquivo anexado
+- [ ] **Download de documento** - Baixar arquivo específico
+
+#### ⏳ Notificações
+
+- [ ] **Atualizar notificação existente** - Modificar configurações de notificação
+- [ ] **Configurar notificações** - Definir tipos de notificações ativas
+- [ ] **Listar notificações** - Recuperar histórico de notificações enviadas
+- [ ] **Criar nova notificação** - Configurar nova regra de notificação
+- [ ] **Deletar notificação** - Remover configuração de notificação
+
+#### ⏳ Parcelamentos
+
+- [ ] **Criar parcelamento** - Dividir cobrança em múltiplas parcelas
+- [ ] **Listar parcelamentos** - Recuperar parcelamentos criados
+- [ ] **Recuperar parcelamento específico** - Detalhes de um parcelamento
+- [ ] **Atualizar parcelamento** - Modificar parcelamento existente
+- [ ] **Deletar parcelamento** - Cancelar parcelamento
+
+#### ⏳ Assinaturas (Recorrência)
+
+- [ ] **Criar nova assinatura** - Configurar cobrança recorrente
+- [ ] **Listar assinaturas** - Recuperar assinaturas ativas e inativas
+- [ ] **Recuperar assinatura específica** - Detalhes de uma assinatura
+- [ ] **Atualizar assinatura** - Modificar dados da assinatura
+- [ ] **Cancelar assinatura** - Encerrar cobrança recorrente
+- [ ] **Listar cobranças da assinatura** - Histórico de cobranças geradas
+- [ ] **Listar faturas da assinatura** - Faturas relacionadas à assinatura
+
+#### ⏳ PIX
+
+- [ ] **Criar chave PIX** - Registrar nova chave PIX na conta
+- [ ] **Listar chaves PIX** - Recuperar chaves PIX cadastradas
+- [ ] **Deletar chave PIX** - Remover chave PIX da conta
+- [ ] **Criar cobrança PIX** - Gerar cobrança específica para PIX
+- [ ] **Gerar QR Code estático** - QR Code reutilizável para recebimentos
+- [ ] **Gerar QR Code dinâmico** - QR Code para valor específico
+- [ ] **Decodificar QR Code** - Extrair informações de QR Code PIX
+
+#### ⏳ Transações PIX
+
+- [ ] **Pagar QR Code** - Efetuar pagamento via QR Code PIX
+- [ ] **Listar transações PIX** - Histórico de transações PIX
+- [ ] **Cancelar transação PIX** - Estornar transação PIX quando possível
+- [ ] **Recuperar comprovante PIX** - Obter comprovante da transação
+- [ ] **Consultar status transação** - Verificar situação da transação PIX
+
+#### ⏳ PIX Recorrente
+
+- [ ] **Listar recorrências PIX** - Recuperar PIX programados
+- [ ] **Criar recorrência PIX** - Agendar PIX recorrente
+- [ ] **Cancelar recorrência PIX** - Interromper PIX programado
+- [ ] **Atualizar recorrência PIX** - Modificar agendamento PIX
+
+#### ⏳ Link de Pagamentos
+
+- [ ] **Criar link de pagamentos** - Gerar link para recebimento online
+- [ ] **Listar links de pagamentos** - Recuperar links criados
+- [ ] **Atualizar link de pagamentos** - Modificar configurações do link
+- [ ] **Recuperar link específico** - Detalhes de um link de pagamento
+- [ ] **Deletar link de pagamentos** - Remover link criado
+- [ ] **Recuperar QR Code do link** - QR Code para compartilhamento
+
+#### ⏳ Checkout
+
+- [ ] **Criar novo checkout** - Página de checkout personalizada
+- [ ] **Configurar checkout** - Definir aparência e comportamento
+- [ ] **Recuperar configurações** - Obter configurações do checkout
+- [ ] **Atualizar configurações** - Modificar checkout existente
+
+#### ⏳ Transferências
+
+- [ ] **Transferir para conta de outra instituição** - TED/DOC para outros bancos
+- [ ] **Transferir via chave PIX** - Transferência instantânea via PIX
+- [ ] **Listar transferências** - Histórico de transferências realizadas
+- [ ] **Recuperar transferência específica** - Detalhes de uma transferência
+- [ ] **Cancelar transferência** - Cancelar transferência agendada
+- [ ] **Transferir para conta Asaas** - Transferência entre contas Asaas
+
+#### ⏳ Antecipações
+
+- [ ] **Recuperar antecipação** - Informações sobre antecipação específica
+- [ ] **Solicitar antecipação** - Antecipar recebíveis disponíveis
+- [ ] **Listar antecipações** - Histórico de antecipações
+- [ ] **Simular antecipação** - Calcular valores de antecipação
+- [ ] **Cancelar antecipação** - Cancelar solicitação pendente
+
+#### ⏳ Negativações
+
+- [ ] **Criar negativação** - Registrar negativação de cliente
+- [ ] **Listar negativações** - Recuperar negativações realizadas
+- [ ] **Recuperar negativação específica** - Detalhes de uma negativação
+- [ ] **Cancelar negativação** - Remover negativação ativa
+- [ ] **Consultar situação CPF/CNPJ** - Verificar restrições existentes
+
+#### ⏳ Pagamento de Contas
+
+- [ ] **Criar pagamento de conta** - Pagar boletos e contas
+- [ ] **Listar pagamentos de contas** - Histórico de pagamentos
+- [ ] **Recuperar pagamento específico** - Detalhes de um pagamento
+- [ ] **Cancelar pagamento** - Cancelar pagamento agendado
+- [ ] **Consultar código de barras** - Verificar dados do boleto
+- [ ] **Simular pagamento** - Calcular taxas e prazos
+
+#### ⏳ Recargas de Celular
+
+- [ ] **Solicitar recarga** - Fazer recarga de celular pré-pago
+- [ ] **Listar recargas** - Histórico de recargas realizadas
+- [ ] **Recuperar recarga específica** - Detalhes de uma recarga
+- [ ] **Consultar operadoras** - Listar operadoras disponíveis
+- [ ] **Consultar valores** - Valores de recarga disponíveis
+
+#### ⏳ Consulta Serasa
+
+- [ ] **Realizar consulta Serasa** - Consultar CPF/CNPJ no Serasa
+- [ ] **Listar consultas** - Histórico de consultas realizadas
+- [ ] **Recuperar consulta específica** - Resultado de uma consulta
+- [ ] **Consultar score** - Verificar score de crédito
+
+#### ⏳ Extrato
+
+- [ ] **Recuperar extrato** - Extrato financeiro da conta
+- [ ] **Filtrar por período** - Extrato de período específico
+- [ ] **Exportar extrato** - Download do extrato em PDF/Excel
+- [ ] **Extrato detalhado** - Informações completas das transações
+
+#### ⏳ Informações Financeiras
+
+- [ ] **Recuperar saldo da conta** - Saldo atual e disponível
+- [ ] **Obter informações financeiras** - Dados financeiros consolidados
+- [ ] **Estatísticas de faturamento** - Métricas de recebimento
+- [ ] **Previsão de recebimentos** - Valores a receber por período
+
+#### ⏳ Informações da Conta
+
+- [ ] **Recuperar dados comerciais** - Informações da empresa
+- [ ] **Atualizar informações da conta** - Modificar dados cadastrais
+- [ ] **Configurar personalização** - White label e customizações
+- [ ] **Recuperar configurações** - Configurações atuais da conta
+- [ ] **Upload de logo** - Personalizar logotipo da conta
+
+#### ⏳ Notas Fiscais
+
+- [ ] **Agendar nota fiscal** - Programar emissão de NF
+- [ ] **Listar notas fiscais** - Histórico de notas emitidas
+- [ ] **Recuperar nota específica** - Detalhes de uma nota fiscal
+- [ ] **Cancelar nota fiscal** - Cancelar nota já emitida
+- [ ] **Download de XML** - Baixar arquivo XML da nota
+- [ ] **Enviar por email** - Enviar nota fiscal por email
+
+#### ⏳ Informações Fiscais
+
+- [ ] **Listar configurações municipais** - Configurações fiscais por cidade
+- [ ] **Configurar informações fiscais** - Definir dados para emissão de NF
+- [ ] **Atualizar configurações** - Modificar configurações fiscais
+- [ ] **Consultar alíquotas** - Verificar alíquotas municipais
+
+#### ⏳ Webhooks
+
+- [ ] **Criar novo webhook** - Configurar notificação via HTTP
+- [ ] **Listar webhooks** - Recuperar webhooks configurados
+- [ ] **Atualizar webhook** - Modificar configurações de webhook
+- [ ] **Deletar webhook** - Remover webhook configurado
+- [ ] **Testar webhook** - Enviar evento de teste
+- [ ] **Reenviar evento** - Reprocessar evento específico
+- [ ] **Listar eventos** - Histórico de eventos enviados
+
+#### ⏳ Subcontas
+
+- [ ] **Criar subconta** - Criar conta filha
+- [ ] **Listar subcontas** - Recuperar subcontas criadas
+- [ ] **Configurar subconta** - Definir permissões e limites
+- [ ] **Atualizar subconta** - Modificar configurações
+- [ ] **Desativar subconta** - Suspender acesso da subconta
+- [ ] **Transferir entre subcontas** - Movimentar valores
+
+#### ⏳ Documentos White Label
+
+- [ ] **Verificar documentos pendentes** - Documentos aguardando aprovação
+- [ ] **Enviar documentos** - Upload de documentos para análise
+- [ ] **Consultar status** - Situação da análise de documentos
+- [ ] **Reenviar documentos** - Submeter novamente após rejeição
+
+#### ⏳ Chargeback
+
+- [ ] **Criar disputa de chargeback** - Contestar chargeback recebido
+- [ ] **Listar chargebacks** - Histórico de chargebacks
+- [ ] **Recuperar chargeback específico** - Detalhes de uma disputa
+- [ ] **Anexar documentos** - Adicionar evidências à disputa
+- [ ] **Acompanhar processo** - Status da contestação
+
+#### ⏳ Cidades e Localização
+
+- [ ] **Listar estados** - Estados brasileiros disponíveis
+- [ ] **Listar cidades por estado** - Cidades de um estado específico
+- [ ] **Consultar CEP** - Buscar endereço por CEP
+- [ ] **Validar endereço** - Verificar validade de endereço
+
+#### ⏳ Relatórios e Analytics
+
+- [ ] **Relatório de vendas** - Análise de faturamento por período
+- [ ] **Relatório de inadimplência** - Cobranças em atraso
+- [ ] **Métricas de conversão** - Taxa de conversão de pagamentos
+- [ ] **Dashboard financeiro** - Visão geral dos indicadores
+
+## Credenciais
+
+Para usar este nó, você precisa se autenticar com o Asaas. Você deve incluir os pré-requisitos (como criar uma conta no serviço), métodos de autenticação disponíveis e como configurá-los.
+
+### Pré-requisitos
+
+1. Crie uma conta no [Asaas](https://asaas.com) ou no [Sandbox do Asaas](https://sandbox.asaas.com) para testes
+2. Gere sua chave de API no painel do Asaas
+
+### Configuração de Autenticação
+
+1. No n8n, vá para **Credenciais** > **Criar Nova Credencial**
+2. Selecione **Asaas API**
+3. Configure os seguintes campos:
+   - **Chave de API**: Sua chave de API do Asaas
+   - **Ambiente**: Escolha entre Produção ou Sandbox
+4. Teste a conexão e salve
+
+## Compatibilidade
+
+- **Versão mínima do n8n**: 1.0.0
+- **Versões testadas**: 1.0.0+
+- **Node.js**: >=20.15
+
+## Uso
+
+Este nó permite integrar facilmente o Asaas aos seus fluxos de trabalho n8n. Comece criando clientes e depois avance para criação de cobranças e outras operações conforme suas necessidades.
+
+Para usuários iniciantes no n8n, consulte a documentação [Experimente](https://docs.n8n.io/try-it-out/) para começar.
+
+## Recursos
+
+- [Documentação dos nós da comunidade n8n](https://docs.n8n.io/integrations/#community-nodes)
+- [Documentação da API do Asaas](https://docs.asaas.com/docs)
+- [Referência da API do Asaas](https://docs.asaas.com/reference)
+- [Portal de desenvolvedores Asaas](https://asaas.com/developers)
+- [Comunidade Discord Asaas](https://discord.gg/invite/X2kgZm69HV)
+
+## Licença
+
+[MIT](LICENSE.md)
