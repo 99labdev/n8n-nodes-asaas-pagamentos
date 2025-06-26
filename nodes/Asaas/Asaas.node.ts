@@ -59,7 +59,73 @@ export class Asaas implements INodeType {
 		for (let i = 0; i < items.length; i++) {
 			try {
 				if (resource === 'customer') {
-					if (operation === 'list') {
+					if (operation === 'create') {
+						// Get required parameters
+						const name = this.getNodeParameter('name', i) as string;
+						const cpfCnpj = this.getNodeParameter('cpfCnpj', i) as string;
+						const email = this.getNodeParameter('email', i) as string;
+						const additionalFields = this.getNodeParameter('additionalFields', i, {}) as {
+							phone?: string;
+							mobilePhone?: string;
+							address?: string;
+							addressNumber?: string;
+							complement?: string;
+							province?: string;
+							postalCode?: string;
+							externalReference?: string;
+							notificationDisabled?: boolean;
+							additionalEmails?: string;
+							municipalInscription?: string;
+							stateInscription?: string;
+							observations?: string;
+							groupName?: string;
+							company?: string;
+							foreignCustomer?: boolean;
+						};
+
+						// Build request body
+						const body: { [key: string]: any } = {
+							name,
+							cpfCnpj,
+						};
+
+						// Add email if provided
+						if (email) body.email = email;
+
+						// Add additional fields to body
+// Add additional fields to body
+Object.entries(additionalFields).forEach(([key, value]) => {
+    if (value !== undefined && value !== '') {
+        body[key] = value;
+    }
+});
+
+						// Make API request
+						const credentials = await this.getCredentials('asaasCredentialsApi');
+						const baseURL = credentials.environment === 'production'
+							? 'https://api.asaas.com/v3'
+							: 'https://api-sandbox.asaas.com/v3';
+
+						const options = {
+							method: 'POST' as const,
+							url: `${baseURL}/customers`,
+							headers: {
+								'access_token': credentials.apiKey,
+								'Content-Type': 'application/json',
+								'User-Agent': 'n8n-asaas-integration',
+							},
+							body,
+							json: true,
+						};
+
+						responseData = await this.helpers.request(options);
+
+						returnData.push({
+							json: responseData,
+							pairedItem: { item: i },
+						});
+
+					} else if (operation === 'list') {
 						// Get parameters
 						const limit = this.getNodeParameter('limit', i, 50) as number;
 						const offset = this.getNodeParameter('offset', i, 0) as number;
@@ -86,8 +152,8 @@ export class Asaas implements INodeType {
 
 						// Make API request
 						const credentials = await this.getCredentials('asaasCredentialsApi');
-						const baseURL = credentials.environment === 'production' 
-							? 'https://api.asaas.com/v3' 
+						const baseURL = credentials.environment === 'production'
+							? 'https://api.asaas.com/v3'
 							: 'https://api-sandbox.asaas.com/v3';
 
 						const options = {
