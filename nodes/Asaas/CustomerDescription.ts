@@ -3,7 +3,7 @@ import { INodeProperties } from 'n8n-workflow';
 // Customer operations for Asaas API
 export const customerOperations: INodeProperties[] = [
 	{
-		displayName: 'Operation',
+		displayName: 'Operação',
 		name: 'operation',
 		type: 'options',
 		noDataExpression: true,
@@ -14,16 +14,10 @@ export const customerOperations: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'List',
+				name: 'Listar',
 				value: 'list',
-				description: 'List all customers',
-				action: 'List customers',
-				routing: {
-					request: {
-						method: 'GET',
-						url: '/customers',
-					},
-				},
+				description: 'Listar todos os clientes',
+				action: 'Listar clientes',
 			},
 		],
 		default: 'list',
@@ -33,7 +27,7 @@ export const customerOperations: INodeProperties[] = [
 // Customer list operation fields
 const listOperation: INodeProperties[] = [
 	{
-		displayName: 'Limit',
+		displayName: 'Limite',
 		name: 'limit',
 		type: 'number',
 		default: 50,
@@ -47,37 +41,25 @@ const listOperation: INodeProperties[] = [
 		typeOptions: {
 			minValue: 1,
 		},
-		routing: {
-			send: {
-				type: 'query',
-				property: 'limit',
-			},
-		},
 	},
 	{
 		displayName: 'Offset',
 		name: 'offset',
 		type: 'number',
 		default: 0,
-		description: 'Number of customers to skip',
+		description: 'Número de clientes para pular',
 		displayOptions: {
 			show: {
 				resource: ['customer'],
 				operation: ['list'],
 			},
 		},
-		routing: {
-			send: {
-				type: 'query',
-				property: 'offset',
-			},
-		},
 	},
 	{
-		displayName: 'Additional Fields',
-		name: 'additionalFields',
+		displayName: 'Filtros Adicionais',
+		name: 'additionalFilters',
 		type: 'collection',
-		placeholder: 'Add Field',
+		placeholder: 'Adicionar Filtro',
 		default: {},
 		displayOptions: {
 			show: {
@@ -91,13 +73,7 @@ const listOperation: INodeProperties[] = [
 				name: 'cpfCnpj',
 				type: 'string',
 				default: '',
-				description: 'Filter customers by CPF or CNPJ',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'cpfCnpj',
-					},
-				},
+				description: 'Filtrar clientes por CPF ou CNPJ',
 			},
 			{
 				displayName: 'Email',
@@ -105,52 +81,28 @@ const listOperation: INodeProperties[] = [
 				type: 'string',
 				placeholder: 'name@email.com',
 				default: '',
-				description: 'Filter customers by email',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'email',
-					},
-				},
+				description: 'Filtrar clientes por email',
 			},
 			{
-				displayName: 'External Reference',
-				name: 'externalReference',
-				type: 'string',
-				default: '',
-				description: 'Filter customers by external reference',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'externalReference',
-					},
-				},
-			},
-			{
-				displayName: 'Group Name',
-				name: 'groupName',
-				type: 'string',
-				default: '',
-				description: 'Filter customers by group name',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'groupName',
-					},
-				},
-			},
-			{
-				displayName: 'Name',
+				displayName: 'Nome',
 				name: 'name',
 				type: 'string',
 				default: '',
-				description: 'Filter customers by name',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'name',
-					},
-				},
+				description: 'Filtrar clientes por nome',
+			},
+			{
+				displayName: 'Nome Do Grupo',
+				name: 'groupName',
+				type: 'string',
+				default: '',
+				description: 'Filtrar clientes por nome do grupo',
+			},
+			{
+				displayName: 'Referência Externa',
+				name: 'externalReference',
+				type: 'string',
+				default: '',
+				description: 'Filtrar clientes por referência externa',
 			},
 		],
 	},

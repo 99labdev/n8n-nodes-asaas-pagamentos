@@ -16,7 +16,7 @@ export class Asaas implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Interact with Asaas API',
+		description: 'Interagir com a API do Asaas',
 		defaults: {
 			name: 'Asaas',
 		},
@@ -28,25 +28,17 @@ export class Asaas implements INodeType {
 				required: true,
 			},
 		],
-		requestDefaults: {
-			baseURL: '={{$credentials.environment === "production" ? "https://api.asaas.com/v3" : "https://api-sandbox.asaas.com/v3"}}',
-			headers: {
-				'access_token': '={{$credentials.apiKey}}',
-				'Content-Type': 'application/json',
-				'User-Agent': 'n8n-asaas-integration',
-			},
-		},
 		properties: [
 			{
-				displayName: 'Resource',
+				displayName: 'Recurso',
 				name: 'resource',
 				type: 'options',
 				noDataExpression: true,
 				options: [
 					{
-						name: 'Customer',
+						name: 'Cliente',
 						value: 'customer',
-						description: 'Manage customers',
+						description: 'Gerenciar clientes',
 					},
 				],
 				default: 'customer',
@@ -56,11 +48,95 @@ export class Asaas implements INodeType {
 		],
 	};
 
-	// The execute function is handled by n8n's routing system
-	// All the routing configuration is defined in the node properties above
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		// This is handled automatically by n8n's routing system
-		// The routing configuration in the node properties will handle the API calls
-		return [[]];
+		const items = this.getInputData();
+		const resource = this.getNodeParameter('resource', 0) as string;
+		const operation = this.getNodeParameter('operation', 0) as string;
+
+		let responseData;
+		const returnData: INodeExecutionData[] = [];
+
+		for (let i = 0; i < items.length; i++) {
+			try {
+				if (resource === 'customer') {
+					if (operation === 'list') {
+						// Get parameters
+						const limit = this.getNodeParameter('limit', i, 50) as number;
+						const offset = this.getNodeParameter('offset', i, 0) as number;
+						const additionalFilters = this.getNodeParameter('additionalFilters', i, {}) as {
+							name?: string;
+							email?: string;
+							cpfCnpj?: string;
+							groupName?: string;
+							externalReference?: string;
+						};
+
+						// Build query parameters
+						const qs: { [key: string]: any } = {
+							limit,
+							offset,
+						};
+
+						// Add additional fields to query
+						if (additionalFilters.name) qs.name = additionalFilters.name;
+						if (additionalFilters.email) qs.email = additionalFilters.email;
+						if (additionalFilters.cpfCnpj) qs.cpfCnpj = additionalFilters.cpfCnpj;
+						if (additionalFilters.groupName) qs.groupName = additionalFilters.groupName;
+						if (additionalFilters.externalReference) qs.externalReference = additionalFilters.externalReference;
+
+						// Make API request
+						const credentials = await this.getCredentials('asaasCredentialsApi');
+						const baseURL = credentials.environment === 'production' 
+							? 'https://api.asaas.com/v3' 
+							: 'https://api-sandbox.asaas.com/v3';
+
+						const options = {
+							method: 'GET' as const,
+							url: `${baseURL}/customers`,
+							headers: {
+								'access_token': credentials.apiKey,
+								'Content-Type': 'application/json',
+								'User-Agent': 'n8n-asaas-integration',
+							},
+							qs,
+							json: true,
+						};
+
+						responseData = await this.helpers.request(options);
+
+						// Handle response
+						if (responseData.data && Array.isArray(responseData.data)) {
+							for (const customer of responseData.data) {
+								returnData.push({
+									json: customer,
+									pairedItem: { item: i },
+								});
+							}
+						} else if (responseData.data) {
+							returnData.push({
+								json: responseData.data,
+								pairedItem: { item: i },
+							});
+						} else {
+							returnData.push({
+								json: responseData,
+								pairedItem: { item: i },
+							});
+						}
+					}
+				}
+			} catch (error) {
+				if (this.continueOnFail()) {
+					returnData.push({
+						json: { error: error.message },
+						pairedItem: { item: i },
+					});
+					continue;
+				}
+				throw error;
+			}
+		}
+
+		return [returnData];
 	}
 }
