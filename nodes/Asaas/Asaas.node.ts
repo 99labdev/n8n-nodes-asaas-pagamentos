@@ -93,22 +93,12 @@ export class Asaas implements INodeType {
 						if (email) body.email = email;
 
 						// Add additional fields to body
-						if (additionalFields.phone) body.phone = additionalFields.phone;
-						if (additionalFields.mobilePhone) body.mobilePhone = additionalFields.mobilePhone;
-						if (additionalFields.address) body.address = additionalFields.address;
-						if (additionalFields.addressNumber) body.addressNumber = additionalFields.addressNumber;
-						if (additionalFields.complement) body.complement = additionalFields.complement;
-						if (additionalFields.province) body.province = additionalFields.province;
-						if (additionalFields.postalCode) body.postalCode = additionalFields.postalCode;
-						if (additionalFields.externalReference) body.externalReference = additionalFields.externalReference;
-						if (additionalFields.notificationDisabled !== undefined) body.notificationDisabled = additionalFields.notificationDisabled;
-						if (additionalFields.additionalEmails) body.additionalEmails = additionalFields.additionalEmails;
-						if (additionalFields.municipalInscription) body.municipalInscription = additionalFields.municipalInscription;
-						if (additionalFields.stateInscription) body.stateInscription = additionalFields.stateInscription;
-						if (additionalFields.observations) body.observations = additionalFields.observations;
-						if (additionalFields.groupName) body.groupName = additionalFields.groupName;
-						if (additionalFields.company) body.company = additionalFields.company;
-						if (additionalFields.foreignCustomer !== undefined) body.foreignCustomer = additionalFields.foreignCustomer;
+// Add additional fields to body
+Object.entries(additionalFields).forEach(([key, value]) => {
+    if (value !== undefined && value !== '') {
+        body[key] = value;
+    }
+});
 
 						// Make API request
 						const credentials = await this.getCredentials('asaasCredentialsApi');
