@@ -1,17 +1,17 @@
 {
-	"node": "n8n-nodes-base.httpbin",
+	"node": "n8n-nodes-base.asaas",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
-	"categories": ["Development", "Developer Tools"],
+	"categories": ["Finance & Accounting"],
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "http://httpbin.org/#/Auth/get_bearer"
+				"url": "https://docs.asaas.com/docs/autentica%C3%A7%C3%A3o-1"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "http://httpbin.org/"
+				"url": "https://docs.asaas.com/"
 			}
 		]
 	}
