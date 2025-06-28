@@ -8,13 +8,13 @@ O Asaas é uma plataforma de pagamentos brasileira que oferece soluções comple
 
 [n8n](https://n8n.io/) é uma plataforma de automação de fluxo de trabalho [licenciada fair-code](https://docs.n8n.io/reference/license/).
 
-[Instalação](#instalação)  
-[Operações](#operações)  
-[Credenciais](#credenciais)  
-[Compatibilidade](#compatibilidade)  
-[Uso](#uso)  
-[Recursos](#recursos)  
-[Histórico de versões](#histórico-de-versões)  
+[Instalação](#instalação)
+[Operações](#operações)
+[Credenciais](#credenciais)
+[Compatibilidade](#compatibilidade)
+[Uso](#uso)
+[Recursos](#recursos)
+[Histórico de versões](#histórico-de-versões)
 
 ## Instalação
 
@@ -32,10 +32,10 @@ npm install n8n-nodes-asaas
 
 - [x] **Listar clientes** - Recuperar lista de clientes com filtros opcionais
 - [x] **Criar novo cliente** - Criar um novo cliente com dados pessoais, de contato e endereço
-- [ ] **Recuperar cliente específico** - Obter detalhes completos de um cliente pelo ID
-- [ ] **Atualizar cliente existente** - Modificar dados de um cliente já cadastrado
-- [ ] **Deletar cliente** - Remover cliente do sistema permanentemente
-- [ ] **Restaurar cliente removido** - Reativar cliente que foi deletado anteriormente
+- [x] **Recuperar cliente específico** - Obter detalhes completos de um cliente pelo ID
+- [x] **Atualizar cliente existente** - Modificar dados de um cliente já cadastrado
+- [x] **Deletar cliente** - Remover cliente do sistema permanentemente
+- [x] **Restaurar cliente removido** - Reativar cliente que foi deletado anteriormente
 
 #### ⏳ Cobranças (Payments)
 

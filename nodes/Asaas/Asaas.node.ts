@@ -3,6 +3,7 @@ import type {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
+	IDataObject,
 } from 'n8n-workflow';
 import { NodeConnectionType } from 'n8n-workflow';
 
@@ -115,6 +116,121 @@ Object.entries(additionalFields).forEach(([key, value]) => {
 								'User-Agent': 'n8n-asaas-integration',
 							},
 							body,
+							json: true,
+						};
+
+						responseData = await this.helpers.request(options);
+
+						returnData.push({
+							json: responseData,
+							pairedItem: { item: i },
+						});
+
+					} else if (operation === 'get') {
+						// Get required parameters
+						const customerId = this.getNodeParameter('customerId', i) as string;
+
+						// Make API request
+						const credentials = await this.getCredentials('asaasCredentialsApi');
+						const baseURL = credentials.environment === 'production' 
+							? 'https://api.asaas.com/v3' 
+							: 'https://api-sandbox.asaas.com/v3';
+
+						const options = {
+							method: 'GET' as const,
+							url: `${baseURL}/customers/${customerId}`,
+							headers: {
+								'access_token': credentials.apiKey,
+								'Content-Type': 'application/json',
+								'User-Agent': 'n8n-asaas-integration',
+							},
+							json: true,
+						};
+
+						responseData = await this.helpers.request(options);
+
+						returnData.push({
+							json: responseData,
+							pairedItem: { item: i },
+						});
+
+					} else if (operation === 'update') {
+						// Get required parameters
+						const customerId = this.getNodeParameter('customerId', i) as string;
+						const updateFields = this.getNodeParameter('updateFields', i, {}) as IDataObject;
+
+						// Make API request
+						const credentials = await this.getCredentials('asaasCredentialsApi');
+						const baseURL = credentials.environment === 'production' 
+							? 'https://api.asaas.com/v3' 
+							: 'https://api-sandbox.asaas.com/v3';
+
+						const options = {
+							method: 'PUT' as const,
+							url: `${baseURL}/customers/${customerId}`,
+							headers: {
+								'access_token': credentials.apiKey,
+								'Content-Type': 'application/json',
+								'User-Agent': 'n8n-asaas-integration',
+							},
+							body: updateFields,
+							json: true,
+						};
+
+						responseData = await this.helpers.request(options);
+
+						returnData.push({
+							json: responseData,
+							pairedItem: { item: i },
+						});
+
+					} else if (operation === 'delete') {
+						// Get required parameters
+						const customerId = this.getNodeParameter('customerId', i) as string;
+
+						// Make API request
+						const credentials = await this.getCredentials('asaasCredentialsApi');
+						const baseURL = credentials.environment === 'production' 
+							? 'https://api.asaas.com/v3' 
+							: 'https://api-sandbox.asaas.com/v3';
+
+						const options = {
+							method: 'DELETE' as const,
+							url: `${baseURL}/customers/${customerId}`,
+							headers: {
+								'access_token': credentials.apiKey,
+								'Content-Type': 'application/json',
+								'User-Agent': 'n8n-asaas-integration',
+							},
+							json: true,
+						};
+
+						responseData = await this.helpers.request(options);
+
+						returnData.push({
+							json: responseData,
+							pairedItem: { item: i },
+						});
+
+					} else if (operation === 'restore') {
+						// Get required parameters
+						const customerId = this.getNodeParameter('customerId', i) as string;
+
+						// Make API request
+						const credentials = await this.getCredentials('asaasCredentialsApi');
+						const baseURL = credentials.environment === 'production' 
+							? 'https://api.asaas.com/v3' 
+							: 'https://api-sandbox.asaas.com/v3';
+
+						const options = {
+							method: 'POST' as const,
+							url: `${baseURL}/customers/${customerId}/restore`,
+							headers: {
+								'access_token': credentials.apiKey,
+								'Content-Type': 'application/json',
+								'User-Agent': 'n8n-asaas-integration',
+							},
+							body: {},
 							json: true,
 						};
 
