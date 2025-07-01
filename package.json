@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-asaas",
   "version": "0.1.0",
-  "description": "n8n node for Asaas payment platform integration",
+  "description": "Node n8n para integração da plataforma de pagamento Asaas",
   "keywords": [
     "n8n-community-node-package"
   ],
