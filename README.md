@@ -8,14 +8,6 @@ O Asaas é uma plataforma de pagamentos brasileira que oferece soluções comple
 
 [n8n](https://n8n.io/) é uma plataforma de automação de fluxo de trabalho [licenciada fair-code](https://docs.n8n.io/reference/license/).
 
-[Instalação](#instalação)
-[Operações](#operações)
-[Credenciais](#credenciais)
-[Compatibilidade](#compatibilidade)
-[Uso](#uso)
-[Recursos](#recursos)
-[Histórico de versões](#histórico-de-versões)
-
 ## Instalação
 
 Siga o [guia de instalação](https://docs.n8n.io/integrations/community-nodes/installation/) na documentação de nós da comunidade n8n.
