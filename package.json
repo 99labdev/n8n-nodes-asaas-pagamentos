@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-asaas-pagamentos",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Node n8n para integração da plataforma de pagamento Asaas",
   "keywords": [
     "n8n-community-node-package"
@@ -8,12 +8,12 @@
   "license": "MIT",
   "homepage": "",
   "author": {
-    "name": "Hudson Brendon",
-    "email": "contato.hudsonbrendon@gmail.com"
+    "name": "99lab",
+    "email": "contato.99labdev@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hudsonbrendon/n8n-nodes-asaas.git"
+    "url": "git+https://github.com/99labdev/n8n-nodes-asaas.git"
   },
   "engines": {
     "node": ">=20.15"
