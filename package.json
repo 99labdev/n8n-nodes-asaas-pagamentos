@@ -49,5 +49,8 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
+  },
+  "dependencies": {
+    "n8n-nodes-asaas-pagamentos": "^0.1.0"
   }
 }

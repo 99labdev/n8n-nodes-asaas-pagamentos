@@ -1,4 +1,4 @@
-# n8n-nodes-asaas
+# n8n-nodes-asaas-pagamentos
 
 ![Asaas Logo](logo.png)
 
@@ -13,7 +13,7 @@ O Asaas é uma plataforma de pagamentos brasileira que oferece soluções comple
 Siga o [guia de instalação](https://docs.n8n.io/integrations/community-nodes/installation/) na documentação de nós da comunidade n8n.
 
 ```bash
-npm install n8n-nodes-asaas
+npm install n8n-nodes-asaas-pagamentos
 ```
 
 ## Operações
