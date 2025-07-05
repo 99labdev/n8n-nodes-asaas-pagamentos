@@ -144,14 +144,14 @@ npm install n8n-nodes-asaas-pagamentos
 - [ ] **Cancelar recorrência PIX** - Interromper PIX programado
 - [ ] **Atualizar recorrência PIX** - Modificar agendamento PIX
 
-#### ⏳ Link de Pagamentos
+#### ✅ Link de Pagamentos
 
-- [ ] **Criar link de pagamentos** - Gerar link para recebimento online
-- [ ] **Listar links de pagamentos** - Recuperar links criados
-- [ ] **Atualizar link de pagamentos** - Modificar configurações do link
-- [ ] **Recuperar link específico** - Detalhes de um link de pagamento
-- [ ] **Deletar link de pagamentos** - Remover link criado
-- [ ] **Recuperar QR Code do link** - QR Code para compartilhamento
+- [x] **Criar link de pagamentos** - Gerar link para recebimento online
+- [x] **Listar links de pagamentos** - Recuperar links criados
+- [x] **Atualizar link de pagamentos** - Modificar configurações do link
+- [x] **Recuperar link específico** - Detalhes de um link de pagamento
+- [x] **Deletar link de pagamentos** - Remover link criado
+- [x] **Recuperar QR Code do link** - QR Code para compartilhamento
 
 #### ⏳ Checkout
 
