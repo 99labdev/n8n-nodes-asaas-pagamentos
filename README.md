@@ -231,14 +231,14 @@ npm install n8n-nodes-asaas-pagamentos
 - [ ] **Recuperar configurações** - Configurações atuais da conta
 - [ ] **Upload de logo** - Personalizar logotipo da conta
 
-#### ⏳ Notas Fiscais
+#### ✅ Notas Fiscais
 
-- [ ] **Agendar nota fiscal** - Programar emissão de NF
-- [ ] **Listar notas fiscais** - Histórico de notas emitidas
-- [ ] **Recuperar nota específica** - Detalhes de uma nota fiscal
-- [ ] **Cancelar nota fiscal** - Cancelar nota já emitida
-- [ ] **Download de XML** - Baixar arquivo XML da nota
-- [ ] **Enviar por email** - Enviar nota fiscal por email
+- [x] **Agendar nota fiscal** - Programar emissão de NF
+- [x] **Listar notas fiscais** - Histórico de notas emitidas
+- [x] **Recuperar nota específica** - Detalhes de uma nota fiscal
+- [x] **Cancelar nota fiscal** - Cancelar nota já emitida
+- [x] **Download de XML** - Baixar arquivo XML da nota
+- [x] **Enviar por email** - Enviar nota fiscal por email
 
 #### ⏳ Informações Fiscais
 
@@ -322,6 +322,37 @@ Para usar este nó, você precisa se autenticar com o Asaas. Você deve incluir 
 ## Uso
 
 Este nó permite integrar facilmente o Asaas aos seus fluxos de trabalho n8n. Comece criando clientes e depois avance para criação de cobranças e outras operações conforme suas necessidades.
+
+### Exemplos de Uso
+
+#### Agendar Nota Fiscal
+
+Para agendar uma nota fiscal, use a operação **Agendar** no recurso **Nota Fiscal**:
+
+1. Selecione o recurso **Nota Fiscal**
+2. Escolha a operação **Agendar**
+3. Preencha o código do serviço municipal (ex: 0109)
+4. Configure os campos adicionais como descrição e valor do serviço
+5. Opcionalmente, vincule a uma cobrança existente usando seu ID
+
+#### Enviar Nota Fiscal por Email
+
+Após agendar uma nota fiscal, você pode enviá-la por email:
+
+1. Selecione o recurso **Nota Fiscal**
+2. Escolha a operação **Enviar Por Email**
+3. Insira o ID da nota fiscal
+4. Defina o email destinatário
+5. Opcionalmente, adicione uma mensagem personalizada
+
+#### Download do XML
+
+Para obter o arquivo XML da nota fiscal:
+
+1. Selecione o recurso **Nota Fiscal**
+2. Escolha a operação **Download XML**
+3. Insira o ID da nota fiscal
+4. O arquivo será retornado como dados binários
 
 Para usuários iniciantes no n8n, consulte a documentação [Experimente](https://docs.n8n.io/try-it-out/) para começar.
 
